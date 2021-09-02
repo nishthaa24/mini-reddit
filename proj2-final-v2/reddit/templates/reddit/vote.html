@@ -1,0 +1,8 @@
+{% load filters %}
+<p>
+<a class="{% if el|user_has_voted:user == 1 %} text-success {%else%} text-muted {% endif %}" href="{% url 'upvote' pk=el.pk%}"><button class="btn btn-sm btn-success" style="border-radius: 50% !important;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button></a>&nbsp;
+
+<span class="label label-primary">{{ el.get_score }}</span>&nbsp;
+
+<a class="{% if el|user_has_voted:user == -1 %} text-success {%else%} text-muted {% endif %}"  href="{% url 'downvote' pk=el.pk%}"><button class="btn btn-sm btn-danger" style="border-radius: 50% !important;"><i class="fa fa-chevron-down" aria-hidden="true"></i></button></a>
+</p>

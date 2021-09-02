@@ -1,0 +1,60 @@
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Mini Reddit</title>
+        <link rel="stylesheet" href="{% static 'css/Bootstrap4.5.2/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/Poppins.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <style type="text/css">
+            .page-header {
+                background-color: #0072b7;
+                margin-top: 0;
+                padding: 20px 20px 20px 40px;
+            }
+
+            .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+                color: #ffffff;
+                font-size: 36pt;
+                text-decoration: none;
+            }
+            .top-menu, .top-menu:hover, .top-menu:visited {
+                color: #ffffff;
+                float: right;
+                font-size: 14pt;
+                margin-right: 20px; 
+            }
+            .logout {
+                color: #fff;
+            }
+            body{
+                font-family: 'Poppins';
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page-header">
+            {% if user.is_authenticated %}
+                <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+                <p class="top-menu">{{ user.username }} <small><a class="glyphicon glyphicon-log-out logout" href="{% url 'logout' %}"></a></small></p>
+            {% else %}
+                <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+            {% endif %}
+            <h1><a href="/">Mini Reddit</a></h1>
+        </div>
+         
+    <div style="margin:auto;margin-top: 6%; width: 60%; border-radius: 10px; padding: 40px; box-shadow: rgba(50, 50, 93, 0.25) 0px 1px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; text-align: center;background-color: #f8f8f8;">
+        <h1 align="center" style="margin-bottom: 4%;">Delete Post? &nbsp;<i class="fa fa-trash" aria-hidden="true"></i></h1>
+    <form method="post" class="post-form">
+        {% csrf_token %}
+        <p style="font-size: 1.5em;">Are you sure you want to delete '<b>{{object}}</b>' ? </p>
+        {{form|crispy}}
+        <button type="submit" class="btn btn-danger" style="margin-right: 4%; margin-top: 2%;">Delete</button>
+        <button onclick="location.href='http://127.0.0.1:8000/';" type="button" class="btn btn-success" style="margin-right: 5%; margin-top: 2%;">Cancel</button>
+    </form>
+    </div>
+    <br><br><br>
+    </body>
+    {% include "reddit/footer.html" %}
+    </html>

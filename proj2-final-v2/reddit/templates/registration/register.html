@@ -1,0 +1,22 @@
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Mini Reddit | Signin</title>
+        <link rel="stylesheet" href="{% static 'css/Bootstrap4.5.2/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/Poppins.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    {% include "reddit/navbar.html" %}
+    <body>
+    <div class="container-fluid" style="margin-top: 5%; margin-left: 5%; margin-bottom: 6%; max-width:80%;">
+        <h1>Create New Account</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-dark">Signin</button>
+        </form>
+    </div>
+</body>
+{% include "reddit/footer.html" %}
+</html>

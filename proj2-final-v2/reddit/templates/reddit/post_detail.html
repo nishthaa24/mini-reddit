@@ -1,0 +1,55 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Mini Reddit</title>
+        <link rel="stylesheet" href="{% static 'css/Bootstrap4.5.2/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/Poppins.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body{
+                font-family: 'Poppins';
+            }
+        </style>
+    </head>
+    {% include "reddit/navbar.html" %}
+    <body>
+    <div class="post"> 
+        <div class="container" style="margin-top: 4%">
+            {% if user.is_authenticated %}
+                <a href="{% url 'post_edit' pk=post.pk %}"><button class="btn btn-primary" style="margin-bottom: 10px;"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{% url 'post_delete' pk=post.pk %}"><button class="btn btn-danger" style="margin-bottom: 10px;"><i class="fa fa-trash" aria-hidden="true"></i></button></a>
+            {% endif %}
+            <div class="jumbotron" style="padding-top: 10px !important; padding-bottom: 5px !important; border-radius: 12px !important; border: 1px solid grey;">
+        <h2 style="font-weight: 600;">{{ post.title }}
+            {% if post.url %}
+                <span class="url"><a href="{{post.url}}">{{post.url}}</a>
+            {% endif %}
+        </h2>
+        <div class="date">
+            <p style="font-size: 0.9em !important;">{{ post.date_created }}
+            {% include "reddit/subs_posted.html" with post=post %}
+             by {{ post.submitter }}</p>
+        </div>
+
+        
+
+        <p style="font-size: 1.2em;">{{ post.text|linebreaksbr }}</p>
+
+        {% include "reddit/vote.html" with el=post %}
+
+    </div>
+
+    <a href="{% url 'add_comment_to_post' pk=post.pk%}"><button class="btn btn-success">Add comment</button></a>
+
+    {% if post.comment_count > 0 %}
+        {% include "reddit/comment.html" with comments=post.children.all %}
+    {% else %}
+        <p style="margin-top: 10px;" class="date">Be the first one to comment!</p>
+    {% endif %}
+    </div>
+    </div>
+    <br><br><br>
+    </body>
+    {% include "reddit/footer.html" %}
+    </html>
+

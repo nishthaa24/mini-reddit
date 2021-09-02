@@ -1,0 +1,65 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Mini Reddit</title>
+        <link rel="stylesheet" href="{% static 'css/Bootstrap4.5.2/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/Poppins.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style type="text/css">
+            body{
+                font-family: 'Poppins';
+            }
+            .date {
+                color: #828282;
+                font-size: 0.8em;
+            }
+        </style>
+    </head>
+    {% include "reddit/navbar.html" %}
+    <body>
+    {% if sub.cover_image_url %}
+    <center><img class="img-rounded img-thumbnail" src='{{sub.cover_image_url}}' style="margin-top: 3%; width: 70%; max-height: 500px; position: relative;" /></center>
+    {% endif %}
+
+    <div>
+        <h1 style="margin-left: 15%; margin-top: 2%; position: relative;">{{sub.name}} </h1>
+    </div>
+
+    <b style="margin-left: 15%; position: relative;color: grey;"><i class="fa fa-user" aria-hidden="true"></i> &nbsp;Moderated by:
+        {% for mod in sub.moderators.all %}
+            <span class="moderator">{{mod.username}}</span>
+        {% endfor %}
+    </b>
+    <center><div style="border-top: 2px solid black; width:70%; margin-top: 2%; position: relative;"></div></center>
+    <div class="post-list">
+        {% for post in sub.posts.all %}
+        
+            <div class="jumbotron" style="position: relative;margin-right: 15%;margin-top: 4%; margin-left: 15%;margin-bottom: -1%;padding-top: 15px !important; padding-bottom: 5px !important; border-radius: 12px !important; border: 1px solid grey;">
+                <h2>
+                    <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                    {% if post.url %}
+                        <span class="url"><a href="{{post.url}}">{{post.url}}</a>
+                    {% endif %}
+                </h2>
+                <div class="date">
+                    {{ post.date_created }}
+                    {% include "reddit/subs_posted.html" with post=post %} 
+                    by {{ post.submitter }}
+                </div>
+                {% if post.url %}
+                    <a href="{{post.url}}">{{post.url}}</a>
+                {% endif %}
+                <p>{{ post.text|linebreaksbr }}</p>
+
+                {% if  post.comment_count > 0 %}
+                    <p><a href="{% url 'post_detail' pk=post.pk %}">{{ post.comment_count }} Comments</a></p>
+                {% endif %}
+
+            </div>
+            
+        {% endfor %}
+    </div>
+    <br><br><br>
+</body>
+{% include "reddit/footer.html" %}
+</html>

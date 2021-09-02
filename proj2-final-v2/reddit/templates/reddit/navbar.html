@@ -1,0 +1,42 @@
+<html>
+<head>
+    <style>
+        .page-header {
+                margin-top: 0;
+                padding: 20px 20px 20px 40px;
+                margin-left: 0;
+            }
+
+            .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+                color: #ffffff;
+                font-size: 36pt;
+                text-decoration: none;
+            }
+            .top-menu, .top-menu:hover, .top-menu:visited {
+                color: #ffffff;
+                float: right;
+                font-size: 14pt;
+                margin-right: 20px; 
+            }
+            .logout {
+                color: #fff;
+            }
+            body{
+                font-family: 'Poppins';
+            }
+    </style>
+</head>
+<body>
+<div class="page-header" style=" background-color: #111;">
+    {% if user.is_authenticated %}
+        <a href="{% url 'post_new' %}" class="top-menu" style="margin-top: 3px;"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+        <p class="top-menu">{{ user.username }}&nbsp;&nbsp;&nbsp;<a href="{% url 'logout' %}" class="top-menu" style="margin-right: -5px !important; margin-top: 3px;"><i class="fa fa-sign-out" aria-hidden="true"></i></a></p>
+    {% else %}
+        <a href="{% url 'login_url' %}" class="top-menu" style="margin-top: 3px;">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+        </a>
+    {% endif %}
+    <h1><a href="/">Mini Reddit</a></h1>
+</div>
+</body>
+</html>

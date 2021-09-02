@@ -1,0 +1,49 @@
+body {
+    background-color: #f9fbff;
+    font-family: 'Poppins';
+}
+
+h1 a {
+    color: #FCA205;
+}
+
+
+.date {
+    color: #828282;
+}
+
+.save {
+    float: right;
+}
+.post-form textarea, .post-form input {
+    width: 100%;
+}
+.post {
+    padding-bottom: 40px;
+}
+
+.post-list .post{
+    padding-bottom: 0px;
+    position: relative;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(218, 221, 222);
+}
+
+.post h1 a, .post h1 a:visited {
+    color: #000000;
+}
+
+.url {
+    font-size: .4em;
+}
+
+.comment{
+    margin: 20px;
+}
+
+
+.cover-image {
+    max-width: 100%;
+    display: inline-block;
+}

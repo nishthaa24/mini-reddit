@@ -1,0 +1,17 @@
+{% extends 'reddit/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1 style="margin-top: 10%; color: black;">New comment &nbsp;<i class="fa fa-comments-o" aria-hidden="true"></i></h1>
+    <div style="border-top: 2px solid grey; position: relative; top: 10px; margin-bottom: 6%; width:50%;"></div>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-row">
+            <div style="width:730px;margin-right:5%;">
+                {{ form.text|as_crispy_field }}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Send</button>
+    </form>
+    <br><br><br>
+{% endblock %}

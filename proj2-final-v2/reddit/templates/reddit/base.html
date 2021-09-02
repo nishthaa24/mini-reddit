@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Mini Reddit</title>
+        <link rel="stylesheet" href="{% static 'css/Bootstrap4.5.2/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/Poppins.css' %}">
+        <link rel="stylesheet" href="{% static 'css/reddit.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    {% include "reddit/navbar2.html" %}
+    <body>
+        
+        <div class="container">
+            <div class="row">
+                {% block content2 %}
+                {% endblock %}
+                <div class="col">
+                {% block content %}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+    
+    </body>
+    {% include "reddit/footer.html" %}
+</html>
