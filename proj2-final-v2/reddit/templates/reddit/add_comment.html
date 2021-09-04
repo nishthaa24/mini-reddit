@@ -1,9 +1,56 @@
-{% extends 'reddit/base.html' %}
 {% load crispy_forms_tags %}
-{% block content %}
-    <h1 style="margin-top: 10%; color: black;">New comment &nbsp;<i class="fa fa-comments-o" aria-hidden="true"></i></h1>
-    <div style="border-top: 2px solid grey; position: relative; top: 10px; margin-bottom: 6%; width:50%;"></div>
-    
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Mini Reddit</title>
+        <link rel="stylesheet" href="{% static 'css/Bootstrap4.5.2/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/Poppins.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            @media(min-width: 320px){
+                .container-fluid{
+                    margin-left: 10% !important;
+                }
+                .container-fluid h1{
+                    font-size: 1.6em !important;
+                    margin-top: 15% !important;
+                    margin-bottom: 8%;
+                    margin-left: 4%;
+                }
+                form{
+                    margin-left: 5%;
+                    font-size: 0.9em;
+                }
+                .btn-success{
+                    margin-bottom: 15% !important;
+                    font-size: 0.9em !important;
+                }
+            }
+            @media(min-width: 1440px){
+                .container-fluid h1{
+                    font-size: 2.4em !important;
+                    margin-left: 4.5%;
+                    margin-bottom: 3%;
+                    margin-top: 4% !important;
+                }
+                .container-fluid{
+                    margin-top: 5%;
+                }
+                .btn-success{
+                    margin-bottom: 6% !important;
+                    font-size: 1.2em !important;
+                    margin-top: 1%;
+                }
+            }
+
+        </style>
+    </head>
+    {% include "reddit/navbar.html" %}
+    <body>
+        <div class="container-fluid" style="margin-left: 15%; max-width: 80%;">
+        <h1 style="margin-top: 6%; color: black;">New comment &nbsp;<i class="fa fa-comments-o" aria-hidden="true"></i></h1>
+
+
     <form method="POST">
         {% csrf_token %}
         <div class="form-row">
@@ -11,7 +58,10 @@
                 {{ form.text|as_crispy_field }}
             </div>
         </div>
-        <button type="submit" class="btn btn-success">Send</button>
+        <button type="submit" class="btn btn-success" style="margin-bottom:4%;">Send</button>
     </form>
-    <br><br><br>
-{% endblock %}
+    </div>
+    </body>
+
+{% include "reddit/footer.html" %}
+</html>

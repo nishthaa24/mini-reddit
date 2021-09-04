@@ -16,7 +16,7 @@
                 color: #ffffff;
                 float: right;
                 font-size: 14pt;
-                margin-right: 20px; 
+                margin-right: 20px;
             }
             .logout {
                 color: #fff;
@@ -24,24 +24,153 @@
             body{
                 font-family: 'Poppins';
             }
+            @media(min-width: 320px){
+                .btn-secondary{
+                    font-size: 0.8em !important;
+                    margin-left: -40px;
+                    margin-bottom: 2px;
+                    margin-right: 8px;
+                }
+                form{
+                    font-size: 0.5em;
+                    margin-top: 10px;
+
+                }
+                .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active{
+                    font-size: 1.3em !important;
+                    margin-left: -20px;
+                    margin-right: 5px;
+                    margin-bottom: 40px;
+                }
+                .top-menu, .top-menu:hover, .top-menu:visited{
+                    font-size: 10pt;
+                    margin-right: 15px;
+                }
+                .plus{
+                    margin-right: -50px;
+                }
+                .searchbtn{
+                    font-size: 0.9em !important;
+                    margin-bottom: 2px;
+                    margin-right: -5px;
+                    margin-left: 8px;
+                }
+            }
+            @media(min-width: 375px){
+                .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active{
+                    font-size: 1.6em !important;
+                    margin-left: -10px;
+                    margin-right: 5px;
+                    margin-bottom: 6px;
+                }
+                form{
+                    font-size: 0.8em;
+                    margin-top: 0px;
+                }
+                .btn-secondary{
+                    font-size: 0.9em !important;
+                    margin-left: -40px;
+                    margin-bottom: 2px;
+                    margin-right: 8px;
+                }
+                .searchbtn{
+                    font-size: 0.9em !important;
+                    margin-bottom: 2px;
+                    margin-right: -6px;
+                    margin-left: 8px;
+                }
+                .plus{
+                    margin-right: -50px;
+                }
+                .top-menu, .top-menu:hover, .top-menu:visited{
+                    font-size: 10pt;
+                    margin-right: 15px;
+                }
+            }
+            @media(min-width: 425px){
+                .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active{
+                    font-size: 1.5em !important;
+                    margin-left: 0px;
+
+                    margin-bottom: 6px;
+                }
+                .top-menu, .top-menu:hover, .top-menu:visited{
+                    font-size: 12pt;
+                    margin-right: 15px;
+                }
+                form{
+                    font-size: 0.7em;
+                    margin-top: 0px;
+                    margin-bottom: 10px;
+                }
+                .plus{
+                    margin-right: -60px;
+                }
+                .btn-secondary{
+                    font-size: 0.7em !important;
+                    margin-left: -40px;
+                    margin-bottom: 2px;
+                    margin-right: 8px;
+                }
+                .searchbtn{
+                    font-size: 0.8em !important;
+                    margin-bottom: 2px;
+                    margin-right: 0px;
+                    margin-left: 8px;
+                }
+            }
+            @media(min-width: 1440px){
+                .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active{
+                    font-size: 1.7em !important;
+                    margin-left: -16px;
+                    margin-top:3px;
+                }
+                .btn-secondary{
+                    font-size: 0.9em !important;
+                    margin-left: -40px;
+                    margin-bottom: 2px;
+                    margin-right: 8px;
+                }
+                .searchbtn{
+                    font-size: 0.9em !important;
+                    margin-bottom: 2px;
+                    margin-right: 0px;
+                    margin-left: 6px;
+                }
+                .top-menu, .top-menu:hover, .top-menu:visited{
+                    font-size: 14pt;
+                    margin-right: 15px;
+                    margin-top: 15px;
+                }
+                form{
+                    font-size: 0.9em;
+                    margin-top: 15px;
+                    margin-bottom: 10px;
+                }
+                .plus{
+                    margin-right: -60px;
+                    margin-top: 15px;
+                }
+            }
     </style>
 </head>
 <body>
 <div class="page-header" style=" background-color: #111;">
-    
+    <div class="container-fluid">
     {% if user.is_authenticated %}
-        <a href="{% url 'post_new' %}" class="top-menu" style="margin-top: 3px;"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+        <a href="{% url 'post_new' %}" class="top-menu" style="margin-top: 3px;"><i class="fa fa-plus-circle plus" aria-hidden="true"></i></a>
         <p class="top-menu">{{ user.username }}&nbsp;&nbsp;&nbsp;<a href="{% url 'logout' %}" class="top-menu" style="margin-right: -5px !important; margin-top: 3px;"><i class="fa fa-sign-out" aria-hidden="true"></i></a></p>
     {% else %}
-        <a href="{% url 'login_url' %}" class="top-menu" style="margin-top: 3px;">
+        <a href="{% url 'login_url' %}" class="top-menu" style="margin-top: 17px; margin-left: 3px;">
             <i class="fa fa-lock" aria-hidden="true"></i>
         </a>
     {% endif %}
     <form style="float:right;"><button class="btn btn-secondary" style="border: 1px solid white;"><i class="fa fa-search" aria-hidden="true"></i></button>&nbsp;&nbsp;{{ form.as_table }}&nbsp;&nbsp;
-        <button type="submit" class="btn btn-sm btn-success">Search</button>&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="btn btn-sm btn-success searchbtn">Search</button>&nbsp;&nbsp;&nbsp;
     </form>
     <h1><a href="/">Mini Reddit</a></h1>
-    
+    </div>
+
 </div>
 </body>
 </html>

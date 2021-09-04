@@ -1,0 +1,142 @@
+{% load staticfiles %}
+<html>
+  {% include "reddit/navbar.html" %}
+   <head>
+
+    <title>Minireddit | About Us</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="{% static 'css/Bootstrap4.5.2/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/Poppins.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            .grid {
+                display: grid;
+                grid-auto-rows: auto;
+                grid-gap: 1rem;
+                padding-left: 10%;
+                padding-right: 10%;
+                margin-bottom: 2%;
+            }
+            .card {
+                border-radius: 0.4rem;
+                overflow: hidden;
+                box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+                cursor: pointer;
+                transition: 0.2s;
+                width: unset !important;
+
+            }
+            .card-text {
+                color: #3d3d3d;
+            }
+            .card:hover {
+                transform: translateY(-0.5%);
+                box-shadow: 0 4rem 8rem rgba(0, 0, 0, 0.2);
+            }
+            .card-title {
+                color: #0d0d0d;
+                margin-bottom: 0.5rem;
+            }
+            .card__btn {
+                display: block;
+                width: 100%;
+                padding: 1rem;
+                font-size: 1rem;
+                text-align: center;
+                color: rgb(6, 6, 7);
+                background-color: rgba(66, 53, 185, 0.596);
+                border: none;
+                border-radius: 0.4rem;
+                transition: 0.2s;
+                cursor: pointer;
+            }
+            .card__btn span {
+                margin-left: 1rem;
+                transition: 0.2s;
+            }
+            .card__btn:hover, .card__btn:active {
+                background-color: #dce4ff;
+            }
+            .card__btn:hover span, .card__btn:active span {
+                 margin-left: 2rem;
+            }
+            @media (max-width: 425px) {
+                .card-text {
+                    font-size: 0.8rem;
+                }
+            }
+            @media (min-width: 576px) {
+                .grid {
+                    grid-template-columns: repeat(2, 1fr) !important;
+                }
+                .card-text {
+                    font-size: 0.8rem;
+                }
+            }
+            @media (min-width: 768px) {
+                .grid {
+                    grid-template-columns: repeat(2, 1fr) !important;
+                }
+            }
+            @media (min-width: 992px) {
+                .grid {
+                    grid-template-columns: repeat(2, 1fr) !important;
+                }
+            }
+            @media (min-width: 1200px) {
+                .grid {
+                    grid-template-columns: repeat(2, 1fr) !important;
+                    margin-left: 20%;
+                    margin-right: 20%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+        <div style="text-align: left;padding-left: 10%;padding-right: 10%;margin-top: 3%;margin-bottom: 2%;"><h2><strong>About</strong></h2>
+        <p>Mini Reddit is home to thousands of communities, endless conversation, and authentic human connection. Whether you're into breaking news, sports, TV fan theories, or a never-ending stream of the internet's cutest animals, there's a community on Mini Reddit for you.</p>
+        </div>
+        <div style="text-align: left;padding-left: 10%;padding-right: 10%;margin-bottom: 3%;"><h2><strong>Team</strong></h2>
+            <p>Minireddit is maintained by a small team. We're actively looking to grow this team and would love to hear from you if you're excited about maintaining minireddit.
+            </p>
+            </div>
+        <section id="StartupCards">
+            <h2 style="text-align: center;padding-bottom: 5px;margin-bottom: 2%;"><strong>Members</strong></h2>
+            <div class="grid text-center">
+                <div class="grid__item">
+                    <div class="card border-dark" >
+                        <div class="">
+                            <img src="{% static "img/female.jfif" %}" alt="Card image cap">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Nishtha Arya</h4>
+                            <p class="card-text">Undergraduate student persuing BE in Compter Science from UIET Chandigarh.</p>
+                            <a href="https://www.linkedin.com/in/nishtha-arya-7a0836201" target="_blank" style="text-decoration: none;"><button class="card__btn" style="margin-bottom: 10px;">Know More <span>&rarr;</span></button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid__item">
+                    <div class="card border-dark" >
+                        <div class=" ">
+                            <img src="{% static "img/man.jpg" %}" alt="Card image cap">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Shabd Nangia</h4>
+                            <p class="card-text">Undergraduate student persuing Btech in Computer Science from UIET Kurukshetra.</p>
+                            <a href="https://www.linkedin.com/in/shabd-nangia-043097177" target="_blank" style="text-decoration: none;"><button class="card__btn" style="margin-bottom: 10px;">Know More <span>&rarr;</span></button></a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </section>
+        <div style="text-align: left;padding-left: 10%;padding-right: 10%;padding-top: 10px;"><h2><strong>History</strong></h2>
+            <p style="margin-bottom: 4%;">Minireddit is small version of Reddit. Reddit is an American social news aggregation, web content rating, and discussion website. Registered members submit content to the site such as links, text posts, images, and videos, which are then voted up or down by other members. Posts are organized by subject into user-created boards called "communities" or "subreddits", which cover a variety of topics such as news, politics, religion, science, movies, video games, music, books, sports, fitness, cooking, pets, and image-sharing. Submissions with more up-votes appear towards the top of their subreddit and, if they receive enough up-votes, ultimately on the site's front page. Despite strict rules prohibiting harassment, Reddit's administrators have to moderate the communities and, on occasion, close them. Moderation is also conducted by community-specific moderators, who are not considered Reddit employees.</p>
+            </div>
+    </body>
+    {% include "reddit/footer.html" %}
+</html>

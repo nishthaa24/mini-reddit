@@ -13,6 +13,45 @@
                 color: #828282;
                 font-size: 0.8em;
             }
+            @media(min-width: 320px){
+                .subheading h1{
+                    font-size: 1.4em !important;
+                }
+                b{
+                    font-size: 0.7em ;
+                }
+                .text{
+                    font-size: 0.9em !important;
+                    margin-top: 5px;
+                }
+                .date{
+                    font-size: 0.6em;
+                }
+                h2{
+                    font-size: 1.3em !important;
+                }
+            }
+            @media(min-width: 1440px){
+               .subheading h1{
+                    font-size: 2.8em !important;
+                }
+                b{
+                    font-size: 1em ;
+                }
+                .text{
+                    font-size: 1.2em !important;
+                    margin-top: 5px;
+                }
+                .date{
+                    font-size: 0.8em;
+                }
+                h2{
+                    font-size: 1.8em !important;
+                }
+                .post-list{
+                    margin-bottom: 3%;
+                }
+            }
         </style>
     </head>
     {% include "reddit/navbar.html" %}
@@ -21,7 +60,7 @@
     <center><img class="img-rounded img-thumbnail" src='{{sub.cover_image_url}}' style="margin-top: 3%; width: 70%; max-height: 500px; position: relative;" /></center>
     {% endif %}
 
-    <div>
+    <div class="subheading">
         <h1 style="margin-left: 15%; margin-top: 2%; position: relative;">{{sub.name}} </h1>
     </div>
 
@@ -33,33 +72,33 @@
     <center><div style="border-top: 2px solid black; width:70%; margin-top: 2%; position: relative;"></div></center>
     <div class="post-list">
         {% for post in sub.posts.all %}
-        
+
             <div class="jumbotron" style="position: relative;margin-right: 15%;margin-top: 4%; margin-left: 15%;margin-bottom: -1%;padding-top: 15px !important; padding-bottom: 5px !important; border-radius: 12px !important; border: 1px solid grey;">
                 <h2>
-                    <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                    <a href="{% url 'post_detail' pk=post.pk %}" style="color: #000000;">{{ post.title }}</a>
                     {% if post.url %}
                         <span class="url"><a href="{{post.url}}">{{post.url}}</a>
                     {% endif %}
                 </h2>
                 <div class="date">
                     {{ post.date_created }}
-                    {% include "reddit/subs_posted.html" with post=post %} 
+                    {% include "reddit/subs_posted.html" with post=post %}
                     by {{ post.submitter }}
                 </div>
                 {% if post.url %}
                     <a href="{{post.url}}">{{post.url}}</a>
                 {% endif %}
-                <p>{{ post.text|linebreaksbr }}</p>
+                <p class="text">{{ post.text|linebreaksbr }}</p>
 
                 {% if  post.comment_count > 0 %}
-                    <p><a href="{% url 'post_detail' pk=post.pk %}">{{ post.comment_count }} Comments</a></p>
+                    <p class="date"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.comment_count }} Comments</a></p>
                 {% endif %}
 
             </div>
-            
+
         {% endfor %}
     </div>
-    <br><br><br>
+    <br>
 </body>
 {% include "reddit/footer.html" %}
 </html>

@@ -9,18 +9,75 @@
             body{
                 font-family: 'Poppins';
             }
+            .date {
+                color: #828282;
+            }
+            .secondlast{
+                margin-bottom: 8%;
+            }
+            .allcomments{
+                margin-top: 4%;
+            }
+            @media(min-width: 320px){
+                .btn-primary, .red{
+                    margin-top: 20px ;
+                    font-size: 0.9em !important;
+                }
+                .green{
+                    font-size: 0.9em !important;
+                    margin-top: -5px;
+                }
+                .date{
+                    font-size: 0.7em;
+                }
+                .text{
+                    font-size: 1em !important;
+                }
+                .top1{
+                    font-size: 1.7em;
+                }
+                .end{
+                    margin-bottom: 32px;
+                }
+                .allcomments{
+                    margin-top: 8%;
+                }
+            }
+            @media(min-width: 1440px){
+                .green{
+                    font-size: 1.2em !important;
+                }
+                .btn-primary, .red{
+                    font-size: 1.2em !important;
+                }
+                .top1{
+                    font-size: 2.4em;
+                }
+                .text{
+                    font-size: 1.4em !important;
+                }
+                .date{
+                    font-size: 1em;
+                }
+                .end{
+                    margin-bottom: 60px;
+                }
+                .allcomments{
+                    margin-top: 3%;
+                }
+            }
         </style>
     </head>
     {% include "reddit/navbar.html" %}
     <body>
-    <div class="post"> 
+    <div class="post">
         <div class="container" style="margin-top: 4%">
             {% if user.is_authenticated %}
-                <a href="{% url 'post_edit' pk=post.pk %}"><button class="btn btn-primary" style="margin-bottom: 10px;"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="{% url 'post_delete' pk=post.pk %}"><button class="btn btn-danger" style="margin-bottom: 10px;"><i class="fa fa-trash" aria-hidden="true"></i></button></a>
+                <a href="{% url 'post_edit' pk=post.pk %}"><button class="btn btn-primary" style="margin-bottom: 27px;"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{% url 'post_delete' pk=post.pk %}"><button class="btn btn-danger red" style="margin-bottom: 27px;"><i class="fa fa-trash" aria-hidden="true"></i></button></a>
             {% endif %}
             <div class="jumbotron" style="padding-top: 10px !important; padding-bottom: 5px !important; border-radius: 12px !important; border: 1px solid grey;">
-        <h2 style="font-weight: 600;">{{ post.title }}
+        <h2 class="top1" style="font-weight: 600;">{{ post.title }}
             {% if post.url %}
                 <span class="url"><a href="{{post.url}}">{{post.url}}</a>
             {% endif %}
@@ -31,24 +88,25 @@
              by {{ post.submitter }}</p>
         </div>
 
-        
 
-        <p style="font-size: 1.2em;">{{ post.text|linebreaksbr }}</p>
+
+        <p class="text" style="font-size: 1.2em;">{{ post.text|linebreaksbr }}</p>
 
         {% include "reddit/vote.html" with el=post %}
 
     </div>
 
-    <a href="{% url 'add_comment_to_post' pk=post.pk%}"><button class="btn btn-success">Add comment</button></a>
+    <a href="{% url 'add_comment_to_post' pk=post.pk%}"><button class="btn btn-success green">Add comment</button></a>
+
 
     {% if post.comment_count > 0 %}
-        {% include "reddit/comment.html" with comments=post.children.all %}
+    <div class="allcomments"><h4>Comments &nbsp;<i class="fa fa-comments" aria-hidden="true"></i></h4></div>
+        <div class="secondlast">{% include "reddit/comment.html" with comments=post.children.all %}</div>
     {% else %}
-        <p style="margin-top: 10px;" class="date">Be the first one to comment!</p>
+        <p style="margin-top: 10px;" class="date end">Be the first one to comment!</p>
     {% endif %}
     </div>
     </div>
-    <br><br><br>
     </body>
     {% include "reddit/footer.html" %}
     </html>

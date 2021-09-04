@@ -16,52 +16,127 @@
                 padding-left: 2px;
                 color: #000000;
             }
-            .social{
-                border:none;
-                height: 55px;
-                border-radius: 5px;
-                color: #000000;
+            @media(min-width: 320px){
+                .btn-dark{
+                    margin-left: 32%;
+                }
+                h1{
+                    font-size:1.3em !important;
+                }
+                hr{
+                    margin-top: 30px !important;
+                    margin-right: 40px !important;
+                    margin-left: 43px;
+                    margin-bottom: 25px !important;
+                }
+                form{
+                    margin-left: 45px
+                }
+                .btn-success{
+                    margin-left: 22%;
+                }
+                .top{
+                    margin-top:8%;
+                }
             }
-            .github{
-                background: #343a40;
+            @media(min-width: 375px){
+                form{
+                    margin-left: 48px;
+                }
+                .btn-dark{
+                    margin-left: 36%;
+                }
+                hr{
+                    margin-right: 51px !important;
+                }
+                ul h1{
+                    margin-left: 25px !important;
+                }
+                .btn-success{
+                    margin-left: 28%;
+                }
+                .top{
+                    margin-top: 14%;
+                }
+            }
+            @media(min-width: 425px){
+                form{
+                    margin-left: 60px;
+                }
+                hr{
+                    margin-left: 58px;
+                    margin-right: 58px !important;
+                }
+                ul h1{
+                    margin-left: 47px !important;
+                }
+                .btn-success{
+                    margin-left: 29%;
+                }
+                .top{
+                    margin-top: 12%;
+                }
+            }
+            @media(min-width: 1440px){
+                h1{
+                    font-size: 2.4em !important;
+                }
+                form{
 
+                    margin-left: 20%;
+                    margin-top: 2%;
+                    max-width: 60% !important;
+
+                }
+                .top{
+                    margin-top: 3%;
+                }
+                .btn-dark{
+                    margin-left: 43%;
+                    width: 13%;
+                    margin-top: 3px;
+
+                }
+                .btn-success{
+                    margin-top: 2% !important;
+                    margin-left: 44%;
+
+                }
+                hr{
+                    margin-left: 19%;
+                    margin-right: 19% !important;
+                }
+                ul h1{
+                    margin-left: 36% !important;
+                    margin-bottom: 1px;
+                }
             }
-            .google{
-                background: #4285F4;
-            }
+
         </style>
     </head>
     {% include "reddit/navbar.html" %}
     <body>
-    <center><h1 style="margin-top: 5%;margin-bottom: 2%;font-weight: 600;">Login Here &nbsp;<i class="fa fa-sign-in" aria-hidden="true"></i></h1></center>
+    <center><h1 class="top" style="font-weight: 600;">Login Here &nbsp;<i class="fa fa-sign-in" aria-hidden="true"></i></h1></center>
     {% if form.errors %}
         <p>Your username and password didn't match. Please try again.</p>
     {% endif %}
-    <div class="table-responsive">
-        <table class="table-secondary" style="margin-left: 25%; margin-right: 25%; width: 50%;position: relative;border-radius: 15px;">
-            <tbody style="position: relative;">
-                <tr style="position: relative;">
-                    <td style="padding-top: 6%;padding-bottom: 10%;padding-left: 8%;">
-                        <ul style="list-style: none;"> 
-                            <br><br><br>
-                        <li style="font-size: 1.1em;"><button class="social github"> &nbsp;<i class="fa fa-github" style="color:white" aria-hidden="true"></i> &nbsp;&nbsp;<a href="{% url 'social:begin' 'github' %}" style="color: white;transition: all 0.3s ease;">SignIn With Github</a> &nbsp;</button></li>
-                        <br>
-                        <li style="font-size: 1.1em;"><button class="social google"> &nbsp;<i class="fa fa-google" style="color:white"aria-hidden="true"></i> &nbsp;&nbsp;<a href="{% provider_login_url 'google' %}" style="color:white;transition: all 0.3s ease;">SignIn With Google</a> &nbsp;</button></li>
-                        <br>
-                        <li style="font-size: 1.1em;"><button class="social btn btn-success" style="width: 66% ;padding-bottom: 4%;"> &nbsp;&nbsp;&nbsp;<a href="{% url 'register_url' %}" style="color: white; transition: all 0.3s ease;">Register</a> &nbsp;</button></li>
-                    </ul>
-                    </td>
-                    <td style="padding-right: 10%;padding-left: 2%;">
-                        <form method="post" action="{% url 'login_url' %}" novalidate>
+
+
+    <div class="container-fluid">
+
+                        <form method="post" action="{% url 'login_url' %}" novalidate style="max-width: 70%;">
                             {% csrf_token %}
                                 {{ form|crispy }}
-                                <input type="submit" value="Login" class="btn btn-dark" style="margin-top: 2%;" />
+                                <input type="submit" value="Login" class="btn btn-dark btn-lg" style="margin-top: 3%;" />
                                 <input type="hidden" name="next" value="{{ next }}" />
                         </form>
-                    </td>
-                </tr>
-            </tbody>    
-        </table>     
+                        <hr>
+                    <ul style="list-style: none;">
+                            <h1>New here? Go SignUp!</h1>
+
+                        <li><button class="btn btn-success btn-lg" style="margin-top: 4%;"> &nbsp;&nbsp;&nbsp;<a href="{% url 'register_url' %}" style="color: white; transition: all 0.3s ease;">SignUp</a> &nbsp;</button></li>
+                    </ul>
+
     </div>
     <br><br><br>
     </body>

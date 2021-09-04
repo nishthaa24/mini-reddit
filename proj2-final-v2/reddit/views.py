@@ -102,5 +102,6 @@ def registerView(request):
         form = UserCreationForm()
     return render(request, 'registration/register.html', {'form' : form})
 
-
+def aboutusView(request):
+    return render(request, 'reddit/aboutus.html')
 

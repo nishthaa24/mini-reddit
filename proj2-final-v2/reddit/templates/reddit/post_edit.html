@@ -1,4 +1,4 @@
-{%load crispy_forms_tags %} 
+{%load crispy_forms_tags %}
 {% load staticfiles %}
 <html>
     <head>
@@ -10,12 +10,37 @@
             body{
                 font-family: 'Poppins';
             }
+            @media(min-width: 320px){
+                form{
+                    margin-left: 8%;
+                    margin-right: 8%;
+                    font-size: 0.9em;
+                    margin-top: 24px;
+                }
+                .top1{
+                    font-size: 2em !important;
+                    margin-top: 30px !important;
+                    font-weight: 400;
+                }
+                .btn-success{
+                    margin-bottom: -37px;
+                }
+            }
+            @media(min-width: 1440px){
+                form{
+                    margin-left: 17%;
+                    margin-right: 17%;
+                    font-size: 1.2em;
+                }
+                .top1{
+                    font-size: 2.5em !important;
+                }
+            }
         </style>
     </head>
     {% include "reddit/navbar.html" %}
     <body>
-    <h1 align="center" style="margin-top: 5%; margin-bottom: 2%;">{% if is_create %} <b>New Post</b> &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i> {% else %} <b>Edit Post</b> &nbsp;<i class="fa fa-pencil" aria-hidden="true"></i> {% endif %}</h1>
-    <div style="background-color: #f8f8f8;margin:auto; width: 50%;border-radius: 10px; padding: 40px; box-shadow: rgba(50, 50, 93, 0.25) 0px 1px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;">
+    <h1 class="top1" align="center" style="margin-top: 4%; margin-bottom: 2%;">{% if is_create %} <b>New Post</b> &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i> {% else %} <b>Edit Post</b> &nbsp;<i class="fa fa-pencil" aria-hidden="true"></i> {% endif %}</h1>
     <form method="POST">{% csrf_token %}
         {{form|crispy}}
         <button type="submit" class="save btn btn-success" style="margin-top: 2%;">Save</button>

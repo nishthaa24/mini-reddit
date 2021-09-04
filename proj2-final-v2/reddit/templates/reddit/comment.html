@@ -1,12 +1,36 @@
+<html>
+    <head>
+        <style>
+            .date1{
+                margin-top: 16px;
+                color: #828282;
+                font-size: 0.8em;
+                margin-bottom: -12px;
+            }
+            .para{
+                font-size: 1.2em;
 
+            }
+            .link{
+                text-decoration: none;
+                margin-bottom: 30px;
+            }
+            .reply{
+                margin-left: 4%;
+            }
+        </style>
+    </head>
+    <body>
     {% for comment in comments %}
         <div class="comment">
-            <div class="date"> <strong>{{ comment.author }}</strong> on {{ comment.date_created }}</div>
+            <div class="date1"> {{ comment.author }} on {{ comment.date_created }}</div>
+            <p class="para">{{ comment.text|linebreaks }}</p>
             {% include "reddit/vote.html" with el=comment %}
-            <p>{{ comment.text|linebreaks }}</p>
-            <a href="{% url 'add_reply_to_comment' pk=post.pk parent_pk=comment.pk %}">Add Reply</a>
+            <a class="link" href="{% url 'add_reply_to_comment' pk=post.pk parent_pk=comment.pk %}">Add Reply</a>
              {% if comment.children.count > 0 %}
-                {% include "reddit/comment.html" with comments=comment.children.all %}
+                <div class="reply">{% include "reddit/comment.html" with comments=comment.children.all %}</div>
             {% endif %}
         </div>
     {% endfor %}
+    </body>
+</html>
