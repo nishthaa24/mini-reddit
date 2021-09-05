@@ -85,9 +85,6 @@
                     {% include "reddit/subs_posted.html" with post=post %}
                     by {{ post.submitter }}
                 </div>
-                {% if post.url %}
-                    <a href="{{post.url}}">{{post.url}}</a>
-                {% endif %}
                 <p class="text">{{ post.text|linebreaksbr }}</p>
 
                 {% if  post.comment_count > 0 %}

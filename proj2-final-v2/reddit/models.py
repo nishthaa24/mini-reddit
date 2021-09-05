@@ -93,7 +93,6 @@ class Votable(BaseModel):
 class Post(Votable):
     title = models.CharField(max_length=200)
     submitter = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='posts_submitted', on_delete=models.CASCADE)
-    url = models.URLField('URL', max_length=200, null=True, blank=True)
     text = models.TextField(blank=True, null=True)
     comment_count = models.PositiveIntegerField(default=0)
 

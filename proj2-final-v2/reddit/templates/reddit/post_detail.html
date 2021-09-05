@@ -78,17 +78,12 @@
             {% endif %}
             <div class="jumbotron" style="padding-top: 10px !important; padding-bottom: 5px !important; border-radius: 12px !important; border: 1px solid grey;">
         <h2 class="top1" style="font-weight: 600;">{{ post.title }}
-            {% if post.url %}
-                <span class="url"><a href="{{post.url}}">{{post.url}}</a>
-            {% endif %}
         </h2>
         <div class="date">
             <p style="font-size: 0.9em !important;">{{ post.date_created }}
             {% include "reddit/subs_posted.html" with post=post %}
              by {{ post.submitter }}</p>
         </div>
-
-
 
         <p class="text" style="font-size: 1.2em;">{{ post.text|linebreaksbr }}</p>
 
