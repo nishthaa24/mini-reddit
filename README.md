@@ -1,4 +1,7 @@
 # Mini Reddit
+This web application can be accessed at [Mini Reddit](https://miniredditapp.pythonanywhere.com/)
+
+
 Mini Reddit is a web application developed using the Django Python framework that utilizes SQLite3 for database management. The project aims to create a simplified version of the popular Reddit app, where users can share and engage with content through voting and commenting. The application was hosted on PythonAnywhere, providing users with easy access to its features.
 
 ## Features
